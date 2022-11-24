@@ -204,6 +204,7 @@ public:
 			audio_config->set_audio_encoding(AudioEncoding::AUDIO_ENCODING_LINEAR_16);
 			audio_config->set_language_code(m_lang.c_str());
 			audio_config->set_single_utterance(true);
+            audio_config->set_model("latest_short");
         }
         switch_log_printf(SWITCH_CHANNEL_LOG, SWITCH_LOG_DEBUG, "GStreamer::startStream checking OutputAudioConfig custom parameters: speaking rate %f, pitch %f, volume %f, voice name '%s' gender '%s', effects '%s'\n", m_speakingRate, m_pitch, m_volume, m_voiceName.c_str(), m_voiceGender.c_str(), m_effects.c_str());
         if (isAnyOutputAudioConfigChanged()) {
