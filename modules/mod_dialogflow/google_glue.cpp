@@ -276,6 +276,7 @@ public:
 		return m_streamer->Finish();
 	}
 	void writesDone() {
+        switch_log_printf(SWITCH_CHANNEL_LOG, SWITCH_LOG_DEBUG, "GStreamer::writesDone %p\n", this);
 		m_streamer->WritesDone();
 	}
 
@@ -409,6 +410,7 @@ static void *SWITCH_THREAD_FUNC grpc_read_thread(switch_thread_t *thread, void *
 	// finish the detect intent session: here is where we may get an error if credentials are invalid
 	switch_core_session_t* psession = switch_core_session_locate(cb->sessionId);
 	if (psession) {
+        switch_log_printf(SWITCH_CHANNEL_LOG, SWITCH_LOG_INFO, "dialogflow stream closing psession null -rui\n");
 		grpc::Status status = streamer->finish();
 		if (!status.ok()) {
 			std::ostringstream s;
@@ -526,7 +528,7 @@ extern "C" {
 			if (streamer) {
 				switch_log_printf(SWITCH_CHANNEL_SESSION_LOG(session), SWITCH_LOG_DEBUG, "google_dialogflow_session_cleanup: sending writesDone..\n");
 				streamer->writesDone();
-				streamer->finish();
+				// TODO streamer->finish();
 			}
 			if (cb->thread) {
 				switch_status_t retval;
