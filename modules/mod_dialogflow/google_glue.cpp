@@ -529,7 +529,7 @@ extern "C" {
 			if (streamer) {
 				switch_log_printf(SWITCH_CHANNEL_SESSION_LOG(session), SWITCH_LOG_DEBUG, "google_dialogflow_session_cleanup: sending writesDone..\n");
 				streamer->writesDone();
-				// TODO streamer->finish();
+				streamer->finish();
 			}
 			if (cb->thread) {
 				switch_status_t retval;
