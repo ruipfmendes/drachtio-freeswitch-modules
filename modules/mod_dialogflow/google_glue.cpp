@@ -410,7 +410,7 @@ static void *SWITCH_THREAD_FUNC grpc_read_thread(switch_thread_t *thread, void *
 	// finish the detect intent session: here is where we may get an error if credentials are invalid
 	switch_core_session_t* psession = switch_core_session_locate(cb->sessionId);
 	if (psession) {
-        switch_log_printf(SWITCH_CHANNEL_LOG, SWITCH_LOG_INFO, "dialogflow stream closing psession null -rui\n");
+        switch_log_printf(SWITCH_CHANNEL_LOG, SWITCH_LOG_INFO, "dialogflow stream closing with writesDone\n");
         streamer->writesDone();
 		grpc::Status status = streamer->finish();
 		if (!status.ok()) {
