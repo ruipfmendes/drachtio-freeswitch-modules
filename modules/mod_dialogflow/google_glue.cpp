@@ -411,7 +411,7 @@ static void *SWITCH_THREAD_FUNC grpc_read_thread(switch_thread_t *thread, void *
 	switch_core_session_t* psession = switch_core_session_locate(cb->sessionId);
 	if (psession) {
         switch_log_printf(SWITCH_CHANNEL_LOG, SWITCH_LOG_INFO, "dialogflow stream closing psession null -rui\n");
-        streamer->writesDone()
+        streamer->writesDone();
 		grpc::Status status = streamer->finish();
 		if (!status.ok()) {
 			std::ostringstream s;
